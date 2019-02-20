@@ -2,33 +2,34 @@
 
 #include <FishGUI/Widget.hpp>
 #include <functional>
-#include <boost/signals2/signal.hpp>
+// #include <boost/signals2/signal.hpp>
+#include <FishGUI/SimpleSignals.h>
 
 class UnityToolBar : public FishGUI::ToolBar
 {
 public:
 	UnityToolBar() : ToolBar() {}
-	
+
 	UnityToolBar(UnityToolBar&) = delete;
 	UnityToolBar& operator=(UnityToolBar&) = delete;
-	
+
 	virtual void Draw() override;
-	
+
 	typedef std::function<void(void)> Callback;
 
 	void SetTransformType();
 
-	boost::signals2::signal<void(void)> OnRun;
-	boost::signals2::signal<void(void)> OnStop;
-	boost::signals2::signal<void(void)> OnPause;
-	boost::signals2::signal<void(void)> OnResume;
-	boost::signals2::signal<void(void)> OnNextFrame;
+	Simple::Signal<void(void)> OnRun;
+	Simple::Signal<void(void)> OnStop;
+	Simple::Signal<void(void)> OnPause;
+	Simple::Signal<void(void)> OnResume;
+	Simple::Signal<void(void)> OnNextFrame;
 
 protected:
 
-	void Run() { OnRun(); }
-	void Stop() { OnStop(); }
-	void Pause() { OnPause(); }
-	void Resume() { OnResume(); }
-	void NextFrame() { OnNextFrame(); }
+	void Run() { OnRun.emit(); }
+	void Stop() { OnStop.emit(); }
+	void Pause() { OnPause.emit(); }
+	void Resume() { OnResume.emit(); }
+	void NextFrame() { OnNextFrame.emit(); }
 };

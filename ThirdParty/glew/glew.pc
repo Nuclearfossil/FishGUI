@@ -1,6 +1,6 @@
-prefix=C:/Program Files/FishGUI
+prefix=C:/Program Files (x86)/FishGUI
 exec_prefix=${prefix}
-libdir=C:/Program Files/FishGUI/lib
+libdir=C:/Program Files (x86)/FishGUI/lib
 includedir=${prefix}/include
 
 Name: glew
